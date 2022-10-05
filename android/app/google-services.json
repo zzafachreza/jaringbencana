@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1016875874927",
+    "project_id": "jaring-bencana",
+    "storage_bucket": "jaring-bencana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016875874927:android:1d363b38d5f263ed14ab9a",
+        "android_client_info": {
+          "package_name": "com.jaringbencana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016875874927-jfn220tdha3aotjiuc8eol22ab4kalq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFtDs61IA5nbbkRF_Ycwxo2utsqd4Wor0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016875874927-jfn220tdha3aotjiuc8eol22ab4kalq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
