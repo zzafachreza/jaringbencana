@@ -46,7 +46,7 @@ export default function ({ navigation, route }) {
 
     useEffect(() => {
         if (isFocused) {
-
+            getData('user').then(u => setUser(u));
             getTransaction();
         }
     }, [isFocused])
@@ -199,10 +199,12 @@ export default function ({ navigation, route }) {
                 />}
                 {loading && <View style={{ flex: 1, marginTop: 100 }}><ActivityIndicator color={colors.primary} size="large" /></View>}
             </ScrollView>
-            <View style={{
+            {user.id_departement == 3 && <View style={{
                 padding: 10,
             }}><MyButton onPress={() => navigation.navigate('AAEdukasiAdd')} warna={colors.secondary} colorText={colors.primary} iconColor={colors.primary} title="TAMBAH" Icons="create-outline" />
-            </View>
+
+            </View>}
+
         </>
     );
 }

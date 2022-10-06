@@ -181,7 +181,7 @@ export default function Login({ navigation }) {
               color: colors.black,
               fontFamily: fonts.secondary[400],
               fontSize: windowWidth / 28
-            }}>Belum memiliki akun ? silakan daftar disini</Text>
+            }}>Belum memiliki akun ? silahkan daftar disini</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

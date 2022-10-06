@@ -43,7 +43,8 @@ import {
   AAEdukasiView,
   AABencanaAdd,
   AABencanaView,
-  AASesamaView
+  AASesamaView,
+  AABencanaLokasi
 
 
 } from '../pages';
@@ -96,6 +97,18 @@ export default function Router() {
       <Stack.Screen
         name="AABencanaView"
         component={AABencanaView}
+        options={{
+          headerShown: false,
+          headerTitle: '',
+          headerTintColor: colors.white,
+          headerStyle: {
+            backgroundColor: colors.primary,
+          }
+        }}
+      />
+      <Stack.Screen
+        name="AABencanaLokasi"
+        component={AABencanaLokasi}
         options={{
           headerShown: false,
           headerTitle: '',

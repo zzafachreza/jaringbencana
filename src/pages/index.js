@@ -46,6 +46,7 @@ import AAEdukasiView from './AAEdukasiView';
 import AABencanaAdd from './AABencanaAdd';
 import AABencanaView from './AABencanaView';
 import AASesamaView from './AASesamaView';
+import AABencanaLokasi from './AABencanaLokasi';
 
 // new
 
@@ -109,5 +110,6 @@ export {
   AAEdukasiView,
   AABencanaAdd,
   AABencanaView,
-  AASesamaView
+  AASesamaView,
+  AABencanaLokasi
 };

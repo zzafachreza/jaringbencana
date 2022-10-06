@@ -105,7 +105,9 @@ export default function AABencanaView({ navigation, route }) {
                 </View>
 
             </ScrollView>
-
+            <View>
+                <MyButton onPress={() => navigation.navigate('AABencanaLokasi', item)} title="Lihat Lokasi Bencana" warna={colors.secondary} colorText={colors.primary} radius={0} iconColor={colors.primary} Icons="location-outline" />
+            </View>
         </>
     )
 }

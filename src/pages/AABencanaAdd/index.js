@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, PermissionsAndroid, Alert } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 import { MyButton, MyGap, MyInput } from '../../components';
@@ -10,21 +10,68 @@ import { getData, urlAPI } from '../../utils/localStorage';
 import axios from 'axios';
 import { showMessage } from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
+import GetLocation from 'react-native-get-location';
+
 
 export default function AABencanaAdd({ navigation }) {
 
     const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+
+    const getIzinLokasi = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': 'Jaring Bencana',
+                    'message': 'Izinkan aplikasi untuk mengunakan lokasi'
+                }
+            )
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                console.log("You can use the location");
+
+                GetLocation.getCurrentPosition({
+                    enableHighAccuracy: true,
+                    timeout: 7000,
+                })
+                    .then(location => {
+
+                        getData('user').then(u => {
+                            setUser(u)
+                            setKirim({
+                                ...kirim,
+                                fid_user: u.id,
+                                latitude: location.latitude,
+                                longitude: location.longitude
+                            })
+                        }
+                        );
+
+                        setLoading(false);
+                    })
+                    .catch(error => {
+                        const { code, message } = error;
+                        Alert.alert('JARING BENCANA', 'Pastikan lokasi kamu aktif !');
+                        navigation.goBack();
+                    })
+
+
+
+            } else {
+                console.log("location permission denied")
+                alert("Location permission denied");
+            }
+        } catch (err) {
+            console.warn(err)
+        }
+    }
 
     useEffect(() => {
-        getData('user').then(u => {
-            setUser(u)
-            setKirim({
-                ...kirim,
-                fid_user: u.id
-            })
-        }
-        );
+        getIzinLokasi();
+
+
+
 
     }, [])
 
@@ -39,6 +86,8 @@ export default function AABencanaAdd({ navigation }) {
     const [kirim, setKirim] = useState({
         judul: '',
         isi: '',
+        latitude: 0,
+        longitude: 0,
         foto: '',
     })
     const __getImage = () => {
@@ -124,7 +173,7 @@ export default function AABencanaAdd({ navigation }) {
                         type: 'success'
                     });
                     setLoading(false);
-                    navigation.goBack();
+                    // navigation.goBack();
                 })
             }} radius={0} title="Simpan" warna={colors.primary} />
 

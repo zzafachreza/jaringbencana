@@ -1,15 +1,18 @@
 import { Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { colors } from '../../utils/colors';
 import { fonts, windowWidth } from '../../utils/fonts';
 import base64 from 'react-native-base64';
 import RenderHtml from 'react-native-render-html';
-import { urlAPI, urlAvatar } from '../../utils/localStorage';
+import { getData, urlAPI, urlAvatar } from '../../utils/localStorage';
 import { MyButton } from '../../components';
 import axios from 'axios';
 import { showMessage } from 'react-native-flash-message';
 export default function AASesamaView({ navigation, route }) {
-
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        getData('user').then(u => setUser(u));
+    }, [])
     const item = route.params;
     return (
         <>
@@ -126,7 +129,7 @@ export default function AASesamaView({ navigation, route }) {
                 </View>
 
             </ScrollView>
-            {item.status == 'Belum ditangani relawan' && <View style={{
+            {item.status == 'Belum ditangani relawan' && user.id_departement == 3 && <View style={{
                 flexDirection: 'row'
             }}>
                 <View style={{
